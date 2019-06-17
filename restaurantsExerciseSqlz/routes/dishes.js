@@ -4,7 +4,7 @@ let db = require('../models');
 let bodyParser = require('body-parser');
 
 router.get('/dishes', (req, res) => {
-    db.dishes.findAll()
+    db.dishes.findAll({order: [['createdAt', 'DESC']]})
     .then((records) => {
 
         res.render('dishes', {
@@ -26,7 +26,7 @@ router.post('/dishes', (req, res) => {
 
     db.dishes.create({title:title, description:description, price:price, course:course, imageURL:imageURL})
     .then((result) => {
-        db.dishes.findAll()
+        db.dishes.findAll({order: [['createdAt', 'DESC']]})
         .then((records) => {
 
             res.render('dishes', {

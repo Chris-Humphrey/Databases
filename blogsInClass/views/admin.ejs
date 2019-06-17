@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form action="/" method="POST">
+        title: <input type='text' name="title"><br>
+        abstract: <input type='text' name="abstract"><br>
+        body: <input type='text' name="body"><br>
+        isPublished: <input type='checkbox' name="checkbox"><br>
+        imageURL: <input type='text' name="imageURL"><br>
+
+        <select name="categories" id="categories">
+            <% categories.forEach(category => { %>
+                <option value="<%= category.id %> "><%= category.title %> </option>
+            <% }) %>
+        </select><br>
+
+        <button type='submit'>Submit</button>
+    </form>
+
+</body>
+</html>

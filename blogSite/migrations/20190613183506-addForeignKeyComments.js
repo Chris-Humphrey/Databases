@@ -5,22 +5,32 @@ module.exports = {
 
     return (
       queryInterface.addColumn(
-      '',
-      '',
+      'comments',
+      'blogId',
       {
         type:Sequelize.INTEGER,
         references: {
-          model: 'blog',
+          model: 'blogs',
           key: 'id'
         }
       }),
       queryInterface.addColumn(
-        'blogs',
-        'commentsId',
+        'authors',
+        'blogId',
         {
           type:Sequelize.INTEGER,
           references: {
-            model: 'comments',
+            model: 'blogs',
+            key: 'id'
+          }
+        }),
+      queryInterface.addColumn(
+        'categories',
+        'blogId',
+        {
+          type:Sequelize.INTEGER,
+          references: {
+            model: 'blogs',
             key: 'id'
           }
         })
@@ -28,12 +38,10 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
 
-      Example:
-      return queryInterface.dropTable('users');
-    */
+    return (queryInterface.removeColumn('comments', 'blogId'),
+    queryInterface.removeColumn('authors', 'blogId'),
+    queryInterface.removeColumn('categories', 'blogId'))
+
   }
 };
